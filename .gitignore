@@ -1,0 +1,23 @@
+# Credentials
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+
+# Data (raw files are not committed)
+data/raw/*.csv
+data/raw/*.parquet
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build / dist
+dist/
+build/
+*.egg-info/
