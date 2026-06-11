@@ -9,10 +9,10 @@
 ### Phase 0: Project Setup
 - [x] Repository created and cloned
 - [x] Context files designed (CLAUDE.md, PROGRESS.md, ERRORS_AND_LEARNINGS.md)
-- [ ] Directory structure created
-- [ ] pyproject.toml + UV environment initialized
-- [ ] .gitignore, .env.example created
-- [ ] Initial commit on dev branch
+- [x] Directory structure created
+- [x] pyproject.toml + UV environment initialized
+- [x] .gitignore, .env.example created
+- [x] Initial commit on dev branch
 
 ### Phase 1: Preprocessing Notebook (01_preprocessing.ipynb)
 - [ ] Data loading via ucimlrepo
