@@ -22,7 +22,7 @@
 - [x] Feature engineering decisions documented
 - [x] Processed data saved to data/processed/
 - [x] ADR_001 created documenting binary classification pivot
-- [ ] DATA_INSIGHTS.md created documenting EDA findings and modeling implications
+- [x] DATA_INSIGHTS.md created documenting EDA findings and modeling implications
 
 ### Phase 2: ML Models + Evaluation (02_ml_and_llm.ipynb — Part 1)
 Binary classification (Dropout=1 vs Graduate=0) on the resolved-outcome set.
