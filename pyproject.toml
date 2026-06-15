@@ -18,6 +18,8 @@ dependencies = [
     "ucimlrepo",
     "ipykernel",
     "jupyter",
+    "kaleido",
+    "pyarrow>=24.0.0",
 ]
 
 [build-system]
@@ -26,3 +28,8 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+]

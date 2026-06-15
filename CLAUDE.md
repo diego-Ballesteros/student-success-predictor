@@ -1,13 +1,29 @@
 # CLAUDE.md — Student Success Predictor
 
 ## PROJECT PURPOSE
-Early warning system that predicts whether a university student will Graduate,
-Dropout, or remain Enrolled, using enrollment data + 1st semester performance.
-Enables academic counselors to intervene early with at-risk students.
+Early warning system that identifies currently-enrolled students whose
+academic profile resembles students who historically dropped out, by
+training a binary classifier on resolved outcomes (Dropout vs Graduate)
+and applying it to the Enrolled population as the real-world inference
+target.
 
-Dataset: UCI "Predict Students' Dropout and Academic Success" (4,424 students, 36 features)
-Problem type: Supervised multiclass classification (3 classes)
-Primary metric: Macro F1-Score (class imbalance present)
+Dataset: UCI 'Predict Students' Dropout and Academic Success'
+- Training set: 3,630 students with resolved outcomes (Dropout/Graduate)
+- Inference set: 794 currently-enrolled students (no ground truth)
+
+Problem type: Supervised BINARY classification (Dropout=1, Graduate=0)
+Primary metric: F1-score and ROC-AUC (class balance ~39/61, manageable
+  with class_weight='balanced')
+
+See docs/ADR_001_binary_classification.md for the full rationale.
+
+---
+
+## KEY REFERENCE DOCS
+- docs/ADR_001_binary_classification.md — why binary classification
+- docs/DATA_INSIGHTS.md — EDA findings, feature signal map, two dropout
+  profiles (read before SHAP analysis and LLM explainer design)
+- data/data_dictionary.md — column definitions
 
 ---
 
@@ -107,6 +123,13 @@ src/
 ---
 
 ## LLM INTEGRATION DESIGN
+
+IMPORTANT: The primary use case for StudentRiskExplainer is the 794
+Enrolled students (data/processed/enrolled_demo.parquet) — real students
+with NO ground truth label. The explainer estimates their risk profile
+based on the binary Dropout/Graduate model and explains WHY, in terms
+a counselor can act on. Test-set explanations (where we know the true
+label) can be used secondarily to validate explanation quality.
 
 Class: StudentRiskExplainer in src/llm/explainer.py
 Model: claude-haiku-4-5-20251001 (fast + economical)
