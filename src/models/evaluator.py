@@ -256,7 +256,9 @@ class ModelEvaluator:
         feature_names = preprocessor.get_feature_names_out().tolist()
 
         explainer = shap.Explainer(model, X_background_t)
-        shap_values_obj = explainer(X_explain_t)
+        # check_additivity=False: documented HistGradientBoostingClassifier +
+        # TreeExplainer limitation, does not affect SHAP value direction/ranking validity
+        shap_values_obj = explainer(X_explain_t, check_additivity=False)
 
         raw_ndim = shap_values_obj.values.ndim
         if raw_ndim == 3:

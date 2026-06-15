@@ -117,8 +117,18 @@ src/
 - Use pathlib.Path for all file paths — never string concatenation
 - No hardcoded credentials — always load from .env via python-dotenv
 - Load .env with: load_dotenv(Path(__file__).parent.parent / ".env")
-- sys.stdout.reconfigure(encoding="utf-8") at top of any script (Windows compatibility)
 - Naming: snake_case for functions/variables, PascalCase for classes, UPPER_CASE for constants
+
+### For .py scripts (executed via `uv run python script.py`)
+- Add `sys.stdout.reconfigure(encoding="utf-8")` at the top, after
+  `import sys` — required for Windows console UTF-8 compatibility
+
+### For .ipynb notebooks (executed via Jupyter kernel)
+- NEVER add `sys.stdout.reconfigure(...)` — `sys.stdout` is an
+  `ipykernel.iostream.OutStream` in notebooks and does not implement
+  `.reconfigure()`. Jupyter already handles UTF-8 correctly.
+  (See ERRORS_AND_LEARNINGS.md for the AttributeError this causes if
+  added.)
 
 ---
 
