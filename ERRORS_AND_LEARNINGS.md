@@ -43,4 +43,27 @@ Template for each entry:
 - Fix: Match exact names from df.columns output
 - Prevention: Same as above — print columns first, never assume
 
+## ERROR: sys.stdout.reconfigure fails in Jupyter notebook
+- **Date**: Notebook 01 (original), RECURRED 2026-06-14
+- **Context**: First code cell of a notebook, added per CLAUDE.md CODE
+  STANDARDS encoding rule
+- **Error message**: `AttributeError: 'OutStream' object has no attribute 'reconfigure'`
+- **Root cause**: Under a Jupyter kernel `sys.stdout` is an
+  `ipykernel.iostream.OutStream`, which (unlike a plain script's
+  `io.TextIOWrapper`) does not implement `.reconfigure()`. The CLAUDE.md
+  rule was written for `.py` scripts and applied to notebooks by mistake.
+- **Fix**: Remove `import sys` + `sys.stdout.reconfigure(encoding="utf-8")`
+  from notebook cells. Jupyter already handles UTF-8.
+- **Prevention**: CLAUDE.md CODE STANDARDS now distinguishes `.py` scripts
+  (add the call) from `.ipynb` notebooks (never add it).
+- **Note**: RECURRED in Notebook 02 cell 2 (Date: 2026-06-14) — root cause
+  was CLAUDE.md's CODE STANDARDS section not distinguishing .py vs .ipynb
+  explicitly. Fixed by restructuring that section (see CLAUDE.md).
+
+## ERROR: SHAP additivity check fails on HistGradientBoostingClassifier
+- Context: ModelEvaluator.compute_shap_values, TreeExplainer
+- Fix: pass check_additivity=False to explainer() call
+- Why safe: known numerical approximation issue with HistGB's binned
+  splits; SHAP value signs/rankings remain valid for explanation purposes
+
 *Add new entries above this line as errors are encountered*
