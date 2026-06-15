@@ -19,6 +19,14 @@ See docs/ADR_001_binary_classification.md for the full rationale.
 
 ---
 
+## KEY REFERENCE DOCS
+- docs/ADR_001_binary_classification.md — why binary classification
+- docs/DATA_INSIGHTS.md — EDA findings, feature signal map, two dropout
+  profiles (read before SHAP analysis and LLM explainer design)
+- data/data_dictionary.md — column definitions
+
+---
+
 ## TECH STACK
 - Package manager: UV — NEVER use pip directly
 - Python: 3.11+

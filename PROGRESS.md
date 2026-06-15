@@ -1,6 +1,6 @@
 # PROGRESS — Student Success Predictor
 
-## Current Status: PHASE 0 — Setup
+## Current Status: PHASE 1 — finalizing (DATA_INSIGHTS.md content pending) → next: Phase 2 (ML Models + Evaluation)
 
 ---
 
@@ -15,13 +15,14 @@
 - [x] Initial commit on dev branch
 
 ### Phase 1: Preprocessing Notebook (01_preprocessing.ipynb)
-- [ ] Data loading via ucimlrepo
-- [ ] EDA: class distribution, feature distributions, correlations
-- [ ] Feature group analysis (demographic, academic, macroeconomic)
-- [ ] Stratified train/test split (80/20)
-- [ ] Feature engineering decisions documented
-- [ ] Processed data saved to data/processed/
-- [ ] ADR_001 created documenting binary classification pivot
+- [x] Data loading via ucimlrepo
+- [x] EDA: class distribution, feature distributions, correlations
+- [x] Feature group analysis (demographic, academic, macroeconomic)
+- [x] Stratified train/test split (80/20)
+- [x] Feature engineering decisions documented
+- [x] Processed data saved to data/processed/
+- [x] ADR_001 created documenting binary classification pivot
+- [ ] DATA_INSIGHTS.md created documenting EDA findings and modeling implications
 
 ### Phase 2: ML Models + Evaluation (02_ml_and_llm.ipynb — Part 1)
 Binary classification (Dropout=1 vs Graduate=0) on the resolved-outcome set.
@@ -60,5 +61,5 @@ who have NO ground-truth label — the real-world inference target.
 
 ---
 
-## Last Updated: [DATE]
+## Last Updated: 2026-06-14
 ## Current Branch: dev
